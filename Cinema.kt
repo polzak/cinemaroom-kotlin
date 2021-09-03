@@ -1,9 +1,30 @@
 
 fun main() {
-    val rowNum = 7
-    val colNum = 8
-    val wholeSeats = generateSeats(rowNum * colNum)
-    displaySeats(colNum, wholeSeats)
+    println("Enter the number of rows:")
+    val rowNum = readLine()!!.toInt()
+    println("Enter the number of seats in each row:")
+    val colNum = readLine()!!.toInt()
+    //val cinemaSeats = generateSeats(rowNum * colNum)
+
+    val totalIncome = calculateIncome(rowNum, colNum)
+    println("Total income:")
+    println("\$$totalIncome")
+
+    //displaySeats(colNum, cinemaSeats)
+}
+
+// Calculate the income of seats when they are all sold
+fun calculateIncome(row: Int, col: Int): Int {
+    val wholeSeatNumber = row * col
+    var income = 0
+
+    if (wholeSeatNumber <= 60) {
+        income = wholeSeatNumber * 10
+    } else {
+        val frontRow = row / 2
+        income = frontRow * col * 10 + (row - frontRow) * col * 8
+    }
+    return income
 }
 
 // Array of the whole seats
